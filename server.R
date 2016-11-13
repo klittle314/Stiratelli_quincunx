@@ -82,6 +82,18 @@ shinyServer(function(input, output) {
     names(data1)[1] <- "index"
     names(data1)[2] <- "value"
     data1$row_index <- as.integer(rownames(data1))
+    med1 <- median(data1[1:20,2],na.rm=TRUE)
+    med2 <- median(data1[21:40,2], na.rm=TRUE)
+    med3 <- median(data1[41:60,2], na.rm=TRUE)
+    epoch1 <- cbind.data.frame(c(1:20),med1)
+    names(epoch1)[1] <- "row_index"
+    names(epoch1)[2] <- "value"
+    epoch2 <- cbind.data.frame(c(21:40),med2)
+    names(epoch2)[1] <- "row_index"
+    names(epoch2)[2] <- "value"
+    epoch3 <- cbind.data.frame(c(41:60),med1)
+    names(epoch3)[1] <- "row_index"
+    names(epoch3)[2] <- "value"
     p1 <- ggplot(data1,aes(x=row_index,y=value))+
           theme_bw()+
           geom_rect(aes(NULL, NULL, xmin = 0, 
@@ -90,12 +102,16 @@ shinyServer(function(input, output) {
           geom_point(size=rel(2))+
           geom_line()+
           ylim(40,60)+
-          geom_hline(yintercept=median(data1$value),linetype="dashed")+
-          ggtitle("Run chart with desired range shaded \n Dashed horizontal line is median")+
+          #geom_hline(yintercept=median(data1$value),linetype="dashed")+
+          ggtitle("Run chart with desired range shaded \n Dashed horizontal line is median for each epoch")+
           geom_vline(xintercept=20,linetype=5,color="blue")+
           geom_vline(xintercept=40,linetype=5,color="blue")
+    
+   p2 <- p1 + geom_line(data=epoch1,aes(x=row_index,y=med1),linetype="dashed")+
+     geom_line(data=epoch2,aes(x=row_index,y=med2),linetype="dashed")+
+     geom_line(data=epoch3,aes(x=row_index,y=med3),linetype="dashed")
             
-  print(p1)
+  print(p2)
   })
   
   }) 
