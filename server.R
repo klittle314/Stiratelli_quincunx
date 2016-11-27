@@ -37,23 +37,11 @@ shinyServer(function(input, output) {
       } 
         #return(out_value)
       })
-      new_row <- t(c(count1,drop_value(),input$Meter_Setting))
       
-      values$data <- rbind(values$data,new_row)
-      # names(values$data)[1] <- "index1"
-      # names(values$data)[2] <- "value"
+    new_row <- t(c(count1,drop_value(),input$Meter_Setting))
       
-  
-  
-  # record_set <- reactive({
-  #   value2 <- as.numeric(drop_value())
-  #   data2 <- values$data
-  #   count1 <- input$reset
-  #   new_row <- t(c(count1,value2))
-  #   records <- rbind(data2,new_row)
-  #   values$data <- records
-  #   
-  # })
+    values$data <- rbind(values$data,new_row)
+      
     
   value_now <- reactive({
     value2 <-drop_value()
