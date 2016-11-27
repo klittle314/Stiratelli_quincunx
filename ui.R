@@ -1,7 +1,6 @@
 # Quincunx shiny app 0.1 
-# Kevin Little, Ph.D.  30 Oct 2016
+# Kevin Little, Ph.D.  13 November 2016
 #
-# http://shiny.rstudio.com
 #
 
 library(shiny)
@@ -14,7 +13,7 @@ shinyUI(fluidPage(
   # Application title
   titlePanel("Management Data App"),
 
-  # Sidebar with a slider input for number of bins
+  # Sidebar with a slider input for meter value
   sidebarLayout(
     sidebarPanel(
       actionButton("reset","Tell System to Get Ready!"),
@@ -29,7 +28,7 @@ shinyUI(fluidPage(
       # rather they wait until the user explicitly clicks the submit button.
       submitButton("Get value"),
       br(),
-      helpText("Please click the Tell System to Get Ready button and then click the Get Value button")
+      helpText("Please click the 'Tell System to Get Ready' button and then click the 'Get Value' button")
       )
       
     ),
