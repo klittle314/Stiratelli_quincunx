@@ -1,2 +1,2 @@
 # Stiratelli_quincunx
-management exercise
+management exercise described in blog posts on www.iecodesign.com November 2016.
